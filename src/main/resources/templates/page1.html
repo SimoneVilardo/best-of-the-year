@@ -1,16 +1,57 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
+	<head>
+		<meta charset="ISO-8859-1">
+		<!-- Bootstrap CSS -->
+ 		<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}"/>
+		<title>best-of-the-year</title>
+	</head>
+	<style>
+		.app-container{
+			width: 75vh;
+			margin-top: 100px;
+			margin-bottom: 100px;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.main-text{
+			width: 500px;
+			height: 200px;
+		}
+	</style>
 	<body>
-		<h1>Best of the year by [[${name}]]</h1>
-		<button>
-        	<a href="/movies">Movies</a>
-    	</button>
-    	<button>
-       		<a href="/songs">Songs</a>
-    	</button>
+		<div class="container-fluid app-container border border-black">
+			<header th:replace="frags :: header"></header>
+			<main>
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-12 p-5">
+							<div class="row justify-content-center align-items-center">
+								<div class="col-12 text-center my-3">
+									<h3 th:text="'Best of the year by ' + ${name}"></h3>
+								</div>
+								<div class="col-12 text-center mt-3">
+									<img src="https://picsum.photos/500/200" alt="best-of-year-png" class="img-fluid border border-black">
+								</div>
+								<div class="col-12 d-flex justify-content-center align-items-center">
+									<div class="main-text text-center border border-black p-3">
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+										Nam tincidunt, nibh non dignissim rutrum, ligula magna posuere justo, ut
+										fringilla risus purus ac odio. Maecenas fermentum laoreet mauris vel fermentum.
+										Ut ornare posuere eros, vitae blandit ligula consequat nec.
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+										Nam tincidunt, nibh non dignissim rutrum, ligula magna posuere justo, ut
+										fringilla.
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+		<!-- Bootstrap Bundle with Popper -->
+ 		<script th:src="@{/webjars/bootstrap/5.3.2/js/bootstrap.bundle.min.js}"></script>
 	</body>
 </html>

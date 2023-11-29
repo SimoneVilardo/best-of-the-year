@@ -27,85 +27,49 @@ public class MainController {
 	
 	
 	@GetMapping("/movies")
-    public String movies(Model model, String movies) {
-        
-        movies = "";
-        
-        for (Movie m : getBestMovies()) {
-            
-            if(m.getId() < getBestMovies().size()) {
-                
-                movies += m.getTitle() + ", ";
-                
-            } else {
-                movies += m.getTitle();
-            }
-        }
-        
+    public String movies(Model model) {
+        List<Movie> movies = getBestMovies();
         model.addAttribute("movies", movies);
-        
         return "movies";
     }
     
     @GetMapping("/songs")
-    public String songs(Model model, String songs) {
-        
-        songs = "";
-        
-        for (Song s : getBestSongs()) {
-            
-            if(s.getId() < getBestSongs().size()) {
-                
-                songs += s.getTitle() + ", ";
-                
-            } else {
-                songs += s.getTitle();
-            }
-        }
-        
+    public String songs(Model model) {
+        List<Song> songs = getBestSongs();
         model.addAttribute("songs", songs);
-        
         return "songs";
     }
     
     
     @GetMapping("/movies/{id}")
-    public String showMovie(Model model, String movie, @PathVariable int id) {
+    public String showMovie(Model model, @PathVariable int id) {
 		
-    	for (Movie m : getBestMovies()) {
-			
-    		if(m.getId() == id) {
-    			
-    			movie = m.getTitle();
-    			
-    		}
-    		
-		}
-    	
-		model.addAttribute("id", id);
-		model.addAttribute("movie", movie);
-		
-		return "show-movie";
+    	List<Movie> movies = getBestMovies();
+        for (Movie m : movies) {
+            if(m.getId() == id) {
+                model.addAttribute("id", id);
+                model.addAttribute("movie", m);
+
+                return "show-movie";
+            }
+        }
+        return "Film not found";
     }
     
     
     @GetMapping("/songs/{id}")
-    public String showSong(Model model, String song, @PathVariable int id) {
+    public String showSong(Model model,  @PathVariable int id) {
 		
-    	for (Song s : getBestSongs()) {
-			
-    		if(s.getId() == id) {
-    			
-    			song = s.getTitle();
-    			
-    		}
-    		
-		}
-    	
-		model.addAttribute("id", id);
-		model.addAttribute("song", song);
-		
-		return "show-song";
+    	List<Song> songs = getBestSongs();
+        for (Song s : songs) {
+            if(s.getId() == id) {
+                model.addAttribute("id", id);
+                model.addAttribute("song", s);
+
+                return "show-song";
+            }
+        }
+        return "Song not found";
     }
 	
 	private List<Movie> getBestMovies(){
